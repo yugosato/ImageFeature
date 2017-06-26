@@ -39,7 +39,6 @@ int main()
 	if (ifs.fail())
 		std::cerr << "Can not open the specific file: " << imageListtxt << std::endl;
 
-
 	std::string line;
 	std::vector<std::string> splited;
 	Histogram hist;

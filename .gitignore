@@ -1,0 +1,8 @@
+# files
+.cproject
+.project
+
+# directories
+Debug/
+Release/
+.settings/
