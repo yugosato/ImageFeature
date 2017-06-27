@@ -27,10 +27,10 @@ public:
 	}
 
 
-	bool calcHistogram(const std::string& filename, int* histogram)
+	bool calcHistogram(const std::string& filename, float* histogram)
 	{
 		for (int i = 0; i < 64; i++)
-			histogram[i] = 0;
+			histogram[i] = 0.0f;
 
 		IplImage *img = cvLoadImage(filename.c_str(), CV_LOAD_IMAGE_COLOR);
 		if (img == NULL)
@@ -50,9 +50,24 @@ public:
 					int red = pin[3 * x + 2];
 
 					int bin = rgb2bin(red, green, blue);
-					histogram[bin] += 1;
+					histogram[bin] += 1.0f;
 				}
 			}
+
+			float max = 0.0f;
+			float min = 1000000000.0f;
+			for (int i = 0; i < 64; ++i)
+			{
+				if (max < histogram[i])
+					max = histogram[i];
+
+				if (min > histogram[i])
+					min = histogram[i];
+			}
+
+			for (int i = 0; i < 64; ++i)
+				histogram[i] = (histogram[i] - min) / (max - min);
+
 			cvReleaseImage(&img);
 			return true;
 		}

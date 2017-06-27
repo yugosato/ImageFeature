@@ -42,7 +42,7 @@ int main()
 	std::string line;
 	std::vector<std::string> splited;
 	Histogram hist;
-	int result[dim];
+	float result[dim];
 
 	while (getline(ifs, line))
 	{
