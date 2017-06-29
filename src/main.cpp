@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include "color_histogram.h"
+#include "gabor_filtering.h"
 
 
 void splitline(const std::string& s, const std::string& delim, std::vector<std::string>& result)
@@ -33,7 +34,7 @@ int main()
 {
 	std::string imageListtxt = "/home/yugo/Desktop/dataset/cfd-cropped/images_selected.txt";
 	std::ofstream ofs("cfd-histogram.tsv", std::ios::trunc);
-	int dim = 64;
+	int dim = 72; // histogram:64, gabor:72
 
 	std::ifstream ifs(imageListtxt.c_str());
 	if (ifs.fail())
@@ -41,14 +42,16 @@ int main()
 
 	std::string line;
 	std::vector<std::string> splited;
-	Histogram hist;
+//	Histogram hist;
+	Gabor gabor;
 	float result[dim];
 
 	while (getline(ifs, line))
 	{
 		splitline(line, " ", splited);
 		std::cout << splited[0] << std::endl;
-		hist.calcHistogram(splited[0], result);
+//		hist.calcHistogram(splited[0], result);
+		gabor.calcGaborFeature(splited[0], result);
 		for (int i = 0; i < dim; ++i)
 		{
 			ofs << result[i];
