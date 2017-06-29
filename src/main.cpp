@@ -33,7 +33,7 @@ void splitline(const std::string& s, const std::string& delim, std::vector<std::
 int main()
 {
 	std::string imageListtxt = "/home/yugo/Desktop/dataset/cfd-cropped/images_selected.txt";
-	std::ofstream ofs("cfd-histogram.tsv", std::ios::trunc);
+	std::ofstream ofs("cfd-gabor.tsv", std::ios::trunc);
 	int dim = 72; // histogram:64, gabor:72
 
 	std::ifstream ifs(imageListtxt.c_str());
