@@ -53,7 +53,7 @@ public:
 				}
 			}
 
-			float max = 0.0f;
+			float max = -1000000000.0f;
 			float min = 1000000000.0f;
 			for (int i = 0; i < 64; ++i)
 			{

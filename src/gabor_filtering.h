@@ -118,6 +118,21 @@ public:
 			cv::Mat img_gray;
 			cv::cvtColor(img, img_gray, CV_BGR2GRAY);
 			gabor_filtering(img_gray, gaborFeature);
+
+			float max = -1000000000.0f;
+			float min = 1000000000.0f;
+			for (int i = 0; i < 72; ++i)
+			{
+				if (max < gaborFeature[i])
+					max = gaborFeature[i];
+
+				if (min > gaborFeature[i])
+					min = gaborFeature[i];
+			}
+
+			for (int i = 0; i < 72; ++i)
+				gaborFeature[i] = (gaborFeature[i] - min) / (max - min);
+
 			return true;
 		}
 	}
